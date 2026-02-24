@@ -105,3 +105,87 @@ mainContainer.addEventListener('click', function (event) {
     calculateCount();
 });
 
+function renderAllJobs() {
+    allCardSection.innerHTML = '';
+
+    if (allJobs.length === 0) {
+        allCardSection.innerHTML = createEmptyMessage();
+    } else {
+        allJobs.forEach(job => {
+            let statusText = 'Not Applied';
+            if (interviewList.some(j => j.id === job.id)) statusText = 'interview';
+            if (rejectedList.some(j => j.id === job.id)) statusText = 'rejected';
+            allCardSection.appendChild(createCardHTML(job, statusText));
+        });
+    }
+}
+
+function renderFiltered(type) {
+    filterSection.innerHTML = '';
+    let list = (type === 'interview') ? interviewList : rejectedList;
+
+    if (list.length === 0) {
+        filterSection.innerHTML = createEmptyMessage();
+    } else {
+        list.forEach(job => {
+            filterSection.appendChild(createCardHTML(job, type));
+        });
+    }
+}
+
+function createEmptyMessage() {
+    return `
+        <div class="h-[400px] w-full flex flex-col justify-center items-center gap-5 bg-white px-10 py-[60px] rounded-lg border border-solid border-[#f1f2f4]">
+            <div class="w-[100px] h-[100px] flex justify-center items-center relative">
+                <img src="./jobs.png" alt="No Jobs" class="w-[80px] h-[80px]">
+            </div>
+            <div class="flex flex-col gap-1">
+                <span class="font-semibold text-2xl text-center text-[#002c5c]">No jobs available</span>
+                <span class="font-normal text-[16px] leading-[22px] text-center text-slate-500">Check back soon for new job opportunities</span>
+            </div>
+        </div>`;
+}
+
+function createCardHTML(job, status) {
+    const div = document.createElement('div');
+
+    div.className = 'card flex flex-row justify-between items-start w-full bg-white border border-solid border-[#f1f2f4] p-8 rounded-lg shadow-sm mb-6';
+    div.setAttribute('data-id', job.id);
+    
+    let statusTextColor = "text-[#64748b]"; 
+    if(status === 'interview') statusTextColor = "text-emerald-500 font-bold";
+    if(status === 'rejected') statusTextColor = "text-red-500 font-bold";
+    if(status.toLowerCase() === 'not applied') statusTextColor = "text-[#002c5c] font-medium";
+
+    div.innerHTML = `
+        <div class="space-y-6">
+            <div>
+                <p class="text-4xl font-bold text-[#002c5c]">${job.pos}</p>
+                <p class="text-xl text-slate-500">${job.company}</p>
+            </div>
+
+            <div class="flex gap-2">
+                <p class="bg-gray-200 px-5 py-1 rounded-sm text-sm font-medium uppercase">${job.loc}</p>
+                <p class="bg-gray-200 px-5 py-1 rounded-sm text-sm font-medium uppercase">${job.type}</p>
+                <p class="bg-gray-200 px-5 py-1 rounded-sm text-sm font-medium uppercase">${job.sal}</p>
+            </div>
+
+            <div class="w-[113px] h-9 flex justify-center items-center bg-[#eef4ff] rounded">
+                <p class="${statusTextColor} capitalize text-sm">${status}</p>
+            </div>
+
+            <p class="description text-[#323b49] max-w-2xl leading-relaxed">${job.desc}</p>
+
+            <div class="flex gap-5">
+                <button class="interview-btn bg-white text-green-800 px-6 py-2 font-semibold rounded border  hover:bg-green-300 transition-colors cursor-pointer">Interview</button>
+                <button class="rejected-btn bg-white text-red-800 px-6 py-2 font-semibold rounded border hover:bg-red-300 transition-colors cursor-pointer">Rejected</button>
+            </div>
+        </div>
+
+        <div class="flex ml-4">
+            <button class="btn-delet bg-white text-red-600 px-6 py-2 font-bold rounded border border-red-200 hover:bg-red-50 transition-all cursor-pointer">
+                Delete
+            </button>
+        </div>`;
+    return div;
+}
