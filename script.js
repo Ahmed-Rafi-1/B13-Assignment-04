@@ -137,7 +137,7 @@ function createEmptyMessage() {
     return `
         <div class="h-[400px] w-full flex flex-col justify-center items-center gap-5 bg-white px-10 py-[60px] rounded-lg border border-solid border-[#f1f2f4]">
             <div class="w-[100px] h-[100px] flex justify-center items-center relative">
-                <img src="./jobs.png" alt="No Jobs" class="w-[80px] h-[80px]">
+                <img src="./jobs.png" alt="No Jobs" class="w-20 h-20">
             </div>
             <div class="flex flex-col gap-1">
                 <span class="font-semibold text-2xl text-center text-[#002c5c]">No jobs available</span>
