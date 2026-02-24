@@ -183,7 +183,7 @@ function createCardHTML(job, status) {
         </div>
 
         <div class="flex ml-4">
-            <button class="btn-delet bg-white text-red-600 px-6 py-2 font-bold rounded border border-red-200 hover:bg-red-50 transition-all cursor-pointer">
+            <button class="btn-delete bg-white text-red-600 px-6 py-2 font-bold rounded border border-red-200 hover:bg-red-50 transition-all cursor-pointer">
                 Delete
             </button>
         </div>`;
