@@ -27,22 +27,53 @@
   </head>
   <body>
     <header class="w-[80%] mx-auto mt-10">
-      <h1 class="text-4xl font-bold mb-3 text-[#002c5c]">Job Application Tracker</h1>
+      <h1 class="text-4xl font-bold mb-3 text-[#002c5c]">
+        Job Application Tracker
+      </h1>
       <div class="grid grid-cols-3 gap-4">
-        <div class="bg-indigo-100 p-4 rounded ">
-            <p>Total</p>
-            <p id="total" class="text-2xl font-bold">0</p>
+        <div class="bg-indigo-100 p-4 rounded">
+          <p>Total</p>
+          <p id="total" class="text-2xl font-bold">0</p>
         </div>
-        <div class="bg-indigo-100 p-4 rounded ">
-            <p>Interview</p>
-            <p id="interviewCount" class="text-2xl font-bold text-[#10b981]">0</p>
+        <div class="bg-indigo-100 p-4 rounded">
+          <p>Interview</p>
+          <p id="interviewCount" class="text-2xl font-bold text-[#10b981]">0</p>
         </div>
-        <div class="bg-indigo-100 p-4 rounded ">
-            <p>Rejected</p>
-            <p id="rejectedCount" class="text-2xl font-bold text-[#ef4444]">0</p>
+        <div class="bg-indigo-100 p-4 rounded">
+          <p>Rejected</p>
+          <p id="rejectedCount" class="text-2xl font-bold text-[#ef4444]">0</p>
         </div>
       </div>
     </header>
+    <hr class="my-7" />
+    <main class="w-[80%] mx-auto">
+      <div class="flex justify-between items-center mb-4">
+        <div class="flex gap-2">
+          <button
+            onclick="toggleStyle('all-filter-btn')"
+            id="all-filter-btn"
+            class="btn px-8 bg-[#3b82f6] text-white"
+          >
+            All
+          </button>
+          <button
+            onclick="toggleStyle('interview-filter-btn')"
+            id="interview-filter-btn"
+            class="btn shadow text-[#64748b] bg-white"
+          >
+            Interview
+          </button>
+          <button
+            onclick="toggleStyle('rejected-filter-btn')"
+            id="rejected-filter-btn"
+            class="btn shadow text-[#64748b] bg-white"
+          >
+            Rejected
+          </button>
+        </div>
+        <div class="font-bold text-[#64748b]"><span id="tabCount">0</span> jobs</div>
+      </div>
+    </main>
     <script src="./script.js"></script>
   </body>
 </html>
