@@ -26,6 +26,23 @@
     <title>Job Application Tracker</title>
   </head>
   <body>
+    <header class="w-[80%] mx-auto mt-10">
+      <h1 class="text-4xl font-bold mb-3 text-[#002c5c]">Job Application Tracker</h1>
+      <div class="grid grid-cols-3 gap-4">
+        <div class="bg-indigo-100 p-4 rounded ">
+            <p>Total</p>
+            <p id="total" class="text-2xl font-bold">0</p>
+        </div>
+        <div class="bg-indigo-100 p-4 rounded ">
+            <p>Interview</p>
+            <p id="interviewCount" class="text-2xl font-bold text-[#10b981]">0</p>
+        </div>
+        <div class="bg-indigo-100 p-4 rounded ">
+            <p>Rejected</p>
+            <p id="rejectedCount" class="text-2xl font-bold text-[#ef4444]">0</p>
+        </div>
+      </div>
+    </header>
     <script src="./script.js"></script>
   </body>
 </html>
