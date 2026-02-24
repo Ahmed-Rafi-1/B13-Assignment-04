@@ -70,3 +70,38 @@ function toggleStyle(id) {
 
     calculateCount();
 }
+
+mainContainer.addEventListener('click', function (event) {
+    const card = event.target.closest('.card');
+    if (!card) return;
+
+    const jobId = parseInt(card.getAttribute('data-id'));
+    const jobData = allJobs.find(j => j.id === jobId);
+
+    // when click interview
+    if (event.target.classList.contains('interview-btn')) {
+        if (!interviewList.some(j => j.id === jobId)) {
+            interviewList.push(jobData);
+            rejectedList = rejectedList.filter(j => j.id !== jobId);
+        }
+    } 
+    // when click reject
+    else if (event.target.classList.contains('rejected-btn')) {
+        if (!rejectedList.some(j => j.id === jobId)) {
+            rejectedList.push(jobData);
+            interviewList = interviewList.filter(j => j.id !== jobId);
+        }
+    } 
+    // when click delete
+    else if (event.target.classList.contains('btn-delete')) {
+        allJobs = allJobs.filter(j => j.id !== jobId);
+        interviewList = interviewList.filter(j => j.id !== jobId);
+        rejectedList = rejectedList.filter(j => j.id !== jobId);
+    }
+
+    // Refresh Current View
+    if (currentStatus === 'all-filter-btn') renderAllJobs();
+    else toggleStyle(currentStatus);
+    calculateCount();
+});
+
