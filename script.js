@@ -149,7 +149,7 @@ function createEmptyMessage() {
 function createCardHTML(job, status) {
     const div = document.createElement('div');
 
-    div.className = 'card flex flex-row justify-between items-start w-full bg-white border border-solid border-[#f1f2f4] p-8 rounded-lg shadow-sm mb-6';
+    div.className = 'card flex flex-col md:flex-row justify-between items-start w-full bg-white border border-solid border-[#f1f2f4] p-4 md:p-8 rounded-lg shadow-sm mb-6';
     div.setAttribute('data-id', job.id);
     
     let statusTextColor = "text-[#64748b]"; 
@@ -158,32 +158,32 @@ function createCardHTML(job, status) {
     if(status.toLowerCase() === 'not applied') statusTextColor = "text-[#002c5c] font-medium";
 
     div.innerHTML = `
-        <div class="space-y-6">
+        <div class="space-y-4 md:space-y-6 w-full">
             <div>
-                <p class="text-4xl font-bold text-[#002c5c]">${job.pos}</p>
-                <p class="text-xl text-slate-500">${job.company}</p>
+                <p class="text-2xl md:text-4xl font-bold text-[#002c5c]">${job.pos}</p>
+                <p class="text-lg md:text-xl text-slate-500">${job.company}</p>
             </div>
 
             <div class="flex gap-2">
-                <p class="bg-gray-200 px-5 py-1 rounded-sm text-sm font-medium uppercase">${job.loc}</p>
-                <p class="bg-gray-200 px-5 py-1 rounded-sm text-sm font-medium uppercase">${job.type}</p>
-                <p class="bg-gray-200 px-5 py-1 rounded-sm text-sm font-medium uppercase">${job.sal}</p>
+                <p class="bg-gray-200 px-3 md:px-5 py-1 rounded-sm text-xs md:text-sm font-medium uppercase">${job.loc}</p>
+                <p class="bg-gray-200 px-3 md:px-5 py-1 rounded-sm text-xs md:text-sm font-medium uppercase">${job.type}</p>
+                <p class="bg-gray-200 px-3 md:px-5 py-1 rounded-sm text-xs md:text-sm font-medium uppercase">${job.sal}</p>
             </div>
 
             <div class="w-[113px] h-9 flex justify-center items-center bg-[#eef4ff] rounded">
                 <p class="${statusTextColor} capitalize text-sm">${status}</p>
             </div>
 
-            <p class="description text-[#323b49] max-w-2xl leading-relaxed">${job.desc}</p>
+            <p class="description text-[#323b49] max-w-2xl leading-relaxed text-sm md:text-base">${job.desc}</p>
 
-            <div class="flex gap-5">
-                <button class="interview-btn bg-white text-green-800 px-6 py-2 font-semibold rounded border  hover:bg-green-300 transition-colors cursor-pointer">Interview</button>
-                <button class="rejected-btn bg-white text-red-800 px-6 py-2 font-semibold rounded border hover:bg-red-300 transition-colors cursor-pointer">Rejected</button>
+            <div class="flex flex-wrap gap-3">
+                <button class="interview-btn bg-white text-green-800 px-4 md:px-6 py-2 font-semibold rounded border hover:bg-green-300 transition-colors cursor-pointer text-sm md:text-base">Interview</button>
+                <button class="rejected-btn bg-white text-red-800 px-4 md:px-6 py-2 font-semibold rounded border hover:bg-red-300 transition-colors cursor-pointer text-sm md:text-base">Rejected</button>
             </div>
         </div>
 
-        <div class="flex ml-4">
-            <button class="btn-delete bg-white text-red-600 px-6 py-2 font-bold rounded border border-red-200 hover:bg-red-50 transition-all cursor-pointer">
+        <div class="flex mt-6 md:mt-0 md:ml-4 w-full md:w-auto justify-end">
+            <button class="btn-delete w-full md:w-auto bg-white text-red-600 px-6 py-2 font-bold rounded border border-red-200 hover:bg-red-50 transition-all cursor-pointer">
                 Delete
             </button>
         </div>`;
